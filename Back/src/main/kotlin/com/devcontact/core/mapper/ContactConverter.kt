@@ -34,8 +34,8 @@ class ContactConverter {
             return contactEntity.map { Contact(it.name, it.email, it.phone) }
         }
 
-        fun contactListToContactDtoList(contact: List<Contact>): List<ContactDto> {
-            return contact.map { ContactDto(it.name, it.email, it.phone) }
+        fun contactListToContactDtoList(contact: List<Contact?>): List<ContactDto> {
+            return contact.map { ContactDto(it!!.name, it.email, it.phone) }
         }
     }
 }

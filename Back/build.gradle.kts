@@ -35,7 +35,7 @@ dependencies {
     runtimeOnly("com.fasterxml.jackson.module:jackson-module-kotlin")
 
     noArg {
-        annotation("com.university.commons.annotations.NoArg")
+        annotation("com.devcontact.commons.annotations.NoArg")
     }
 
 }

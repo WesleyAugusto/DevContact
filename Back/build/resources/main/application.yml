@@ -18,4 +18,4 @@ netty:
       max-order: 3
 
 mongodb:
-  uri: 'mongodb://localhost:27017/contacts'
+  uri: 'mongodb://localhost:27017/contact'
