@@ -1,0 +1,4 @@
+com.devcontact.commons.handler.$HandlerExceptions$Definition$Reference
+com.devcontact.core.service.$ContactService$Definition$Reference
+com.devcontact.entry.controller.$ContactController$Definition$Reference
+com.devcontact.infra.repository.$ContactRepository$Definition$Reference
