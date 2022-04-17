@@ -1,1 +1,0 @@
-[engine:kotest]/[spec:com.devcontact.DevcontactTest]/[test:test the server is running]

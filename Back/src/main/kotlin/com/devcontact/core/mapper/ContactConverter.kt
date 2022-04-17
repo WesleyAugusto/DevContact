@@ -9,33 +9,37 @@ class ContactConverter {
         fun contactDtoToContact(contactDto: ContactDto) = Contact(
             name = contactDto.name,
             email = contactDto.email,
-            phone = contactDto.phone
+            phone = contactDto.phone,
+            status = contactDto.status
         )
 
         fun contactToContactDto(contact: Contact) = ContactDto(
             name = contact.name,
             email = contact.email,
-            phone = contact.phone
+            phone = contact.phone,
+            status = contact.status
         )
 
         fun contactToContactEntity(contact: Contact) = ContactEntity(
             name = contact.name,
             email = contact.email,
-            phone = contact.phone
+            phone = contact.phone,
+            status = contact.status
         )
 
         fun contactEntityToContact(contactEntity: ContactEntity) = Contact(
             name = contactEntity.name,
             email = contactEntity.email,
-            phone = contactEntity.phone
+            phone = contactEntity.phone,
+            status = contactEntity.status
         )
 
         fun contactEntityListToContactList(contactEntity: List<ContactEntity>) : List<Contact> {
-            return contactEntity.map { Contact(it.name, it.email, it.phone) }
+            return contactEntity.map { Contact(it.name, it.email, it.phone, it.status) }
         }
 
         fun contactListToContactDtoList(contact: List<Contact?>): List<ContactDto> {
-            return contact.map { ContactDto(it!!.name, it.email, it.phone) }
+            return contact.map { ContactDto(it!!.name, it.email, it.phone, it.status) }
         }
     }
 }

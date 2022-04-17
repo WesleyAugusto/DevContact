@@ -9,4 +9,5 @@ data class ContactEntity(
     var name: String?,
     var email: String?,
     var phone: String?,
+    var status: String?
 )
