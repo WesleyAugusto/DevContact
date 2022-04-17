@@ -3,8 +3,7 @@ import 'package:flutter/material.dart';
 
 import 'models/cases.dart';
 
-enum Gender { male, female }
-enum Status { positive, dead, recovered }
+enum Status { celular, fixo }
 
 class AddDataWidget extends StatefulWidget {
   AddDataWidget();
@@ -19,15 +18,10 @@ class _AddDataWidgetState extends State<AddDataWidget> {
   final ApiService api = ApiService();
   final _addFormKey = GlobalKey<FormState>();
   final _nameController = TextEditingController();
-  String gender = 'male';
-  Gender _gender = Gender.male;
-  final _ageController = TextEditingController();
-  final _addressController = TextEditingController();
-  final _cpfController = TextEditingController();
-  final _cityController = TextEditingController();
-  final _countryController = TextEditingController();
-  String status = 'positive';
-  Status _status = Status.positive;
+  final _emailController = TextEditingController();
+  final _phoneController = TextEditingController();
+  String status = 'celular';
+  Status _status = Status.celular;
 
   @override
   Widget build(BuildContext context) {
@@ -76,7 +70,7 @@ class _AddDataWidgetState extends State<AddDataWidget> {
                             children: <Widget>[
                               Text('Email'),
                               TextFormField(
-                                controller: _cpfController,
+                                controller: _emailController,
                                 decoration: const InputDecoration(
                                   hintText: 'Email',
                                 ),
@@ -97,7 +91,7 @@ class _AddDataWidgetState extends State<AddDataWidget> {
                             children: <Widget>[
                               Text('Telefone'),
                               TextFormField(
-                                controller: _cpfController,
+                                controller: _phoneController,
                                 decoration: const InputDecoration(
                                   hintText: 'Telefone',
                                 ),
@@ -122,7 +116,7 @@ class _AddDataWidgetState extends State<AddDataWidget> {
                               ListTile(
                                 title: const Text('Celular'),
                                 leading: Radio(
-                                  value: Status.positive,
+                                  value: Status.celular,
                                   groupValue: _status,
                                   onChanged: (Status value) {
                                     setState(() {
@@ -135,25 +129,12 @@ class _AddDataWidgetState extends State<AddDataWidget> {
                               ListTile(
                                 title: const Text('Fixo'),
                                 leading: Radio(
-                                  value: Status.dead,
+                                  value: Status.fixo,
                                   groupValue: _status,
                                   onChanged: (Status value) {
                                     setState(() {
                                       _status = value;
                                       status = 'Fixo';
-                                    });
-                                  },
-                                ),
-                              ),
-                              ListTile(
-                                title: const Text('Recovered'),
-                                leading: Radio(
-                                  value: Status.recovered,
-                                  groupValue: _status,
-                                  onChanged: (Status value) {
-                                    setState(() {
-                                      _status = value;
-                                      status = 'recovered';
                                     });
                                   },
                                 ),
@@ -170,7 +151,7 @@ class _AddDataWidgetState extends State<AddDataWidget> {
                                 onPressed: () {
                                   if (_addFormKey.currentState.validate()) {
                                     _addFormKey.currentState.save();
-                                    api.createCase(Cases(name: _nameController.text, gender: gender, age: int.parse(_ageController.text), cpf: _cpfController.text, address: _addressController.text, city: _cityController.text, country: _countryController.text, status: status));
+                                    api.createCase(Cases(name: _nameController.text, email: _emailController.text, phone: _phoneController.text, status: status));
 
                                     Navigator.pop(context) ;
                                   }

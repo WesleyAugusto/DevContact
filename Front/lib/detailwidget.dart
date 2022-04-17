@@ -21,7 +21,7 @@ class _DetailWidgetState extends State<DetailWidget> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Details'),
+        title: Text('Detalhes'),
       ),
       body: SingleChildScrollView(
         child: Container(
@@ -45,8 +45,8 @@ class _DetailWidgetState extends State<DetailWidget> {
                         margin: EdgeInsets.fromLTRB(0, 0, 0, 10),
                         child: Column(
                           children: <Widget>[
-                            Text('Gender:', style: TextStyle(color: Colors.black.withOpacity(0.8))),
-                            Text(widget.cases.gender, style: Theme.of(context).textTheme.titleSmall)
+                            Text('Email:', style: TextStyle(color: Colors.black.withOpacity(0.8))),
+                            Text(widget.cases.email, style: Theme.of(context).textTheme.titleMedium)
                           ],
                         ),
                       ),
@@ -54,44 +54,8 @@ class _DetailWidgetState extends State<DetailWidget> {
                         margin: EdgeInsets.fromLTRB(0, 0, 0, 10),
                         child: Column(
                           children: <Widget>[
-                            Text('Age:', style: TextStyle(color: Colors.black.withOpacity(0.8))),
-                            Text(widget.cases.age.toString(), style: Theme.of(context).textTheme.titleMedium)
-                          ],
-                        ),
-                      ),
-                      Container(
-                        margin: EdgeInsets.fromLTRB(0, 0, 0, 10),
-                        child: Column(
-                          children: <Widget>[
-                            Text('Cpf:', style: TextStyle(color: Colors.black.withOpacity(0.8))),
-                            Text(widget.cases.cpf, style: Theme.of(context).textTheme.titleMedium)
-                          ],
-                        ),
-                      ),
-                      Container(
-                        margin: EdgeInsets.fromLTRB(0, 0, 0, 10),
-                        child: Column(
-                          children: <Widget>[
-                            Text('Address:', style: TextStyle(color: Colors.black.withOpacity(0.8))),
-                            Text(widget.cases.address, style: Theme.of(context).textTheme.titleLarge)
-                          ],
-                        ),
-                      ),
-                      Container(
-                        margin: EdgeInsets.fromLTRB(0, 0, 0, 10),
-                        child: Column(
-                          children: <Widget>[
-                            Text('City:', style: TextStyle(color: Colors.black.withOpacity(0.8))),
-                            Text(widget.cases.city, style: Theme.of(context).textTheme.titleMedium)
-                          ],
-                        ),
-                      ),
-                      Container(
-                        margin: EdgeInsets.fromLTRB(0, 0, 0, 10),
-                        child: Column(
-                          children: <Widget>[
-                            Text('Country:', style: TextStyle(color: Colors.black.withOpacity(0.8))),
-                            Text(widget.cases.country, style: Theme.of(context).textTheme.titleLarge)
+                            Text('Telefone:', style: TextStyle(color: Colors.black.withOpacity(0.8))),
+                            Text(widget.cases.phone, style: Theme.of(context).textTheme.titleLarge)
                           ],
                         ),
                       ),
@@ -149,24 +113,24 @@ class _DetailWidgetState extends State<DetailWidget> {
       barrierDismissible: false, // user must tap button!
       builder: (BuildContext context) {
         return AlertDialog(
-          title: Text('Warning!'),
+          title: Text('Cuidado!'),
           content: SingleChildScrollView(
             child: ListBody(
               children: <Widget>[
-                Text('Are you sure want delete this item?'),
+                Text('Você tem certeza que quer excluir este contato?'),
               ],
             ),
           ),
           actions: <Widget>[
             FlatButton(
-              child: Text('Yes'),
+              child: Text('Sim'),
               onPressed: () {
-                api.deleteCase(widget.cases.cpf);
+                api.deleteCase(widget.cases.email);
                 Navigator.popUntil(context, ModalRoute.withName(Navigator.defaultRouteName));
               },
             ),
             FlatButton(
-              child: const Text('No'),
+              child: const Text('Não'),
               onPressed: () {
                 Navigator.of(context).pop();
               },

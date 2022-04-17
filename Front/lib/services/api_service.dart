@@ -18,8 +18,8 @@ class ApiService {
     }
   }
 
-  Future<Cases> getCaseById(String cpf) async {
-    final response = await get('$apiUrl/$cpf');
+  Future<Cases> getCaseById(String email) async {
+    final response = await get('$apiUrl/$email');
 
     if (response.statusCode == 200) {
       return Cases.fromJson(json.decode(response.body));
@@ -30,13 +30,9 @@ class ApiService {
 
   Future<Cases> createCase(Cases cases) async {
     Map data = {
-      'cpf': cases.cpf,
+      'email': cases.email,
       'name': cases.name,
-      'gender': cases.gender,
-      'age': cases.age,
-      'address': cases.address,
-      'city': cases.city,
-      'country': cases.country,
+      'phone': cases.phone,
       'status': cases.status
     };
 
@@ -55,20 +51,16 @@ class ApiService {
     }
   }
 
-  Future<Cases> updateCases(String cpf, Cases cases) async {
+  Future<Cases> updateCases(String email, Cases cases) async {
     Map data = {
-      'cpf' : cases.cpf,
+      'email': cases.email,
       'name': cases.name,
-      'gender': cases.gender,
-      'age': cases.age,
-      'address': cases.address,
-      'city': cases.city,
-      'country': cases.country,
+      'phone': cases.phone,
       'status': cases.status
     };
 
     final Response response = await put(
-      '$apiUrl/$cpf',
+      '$apiUrl/$email',
       headers: <String, String>{
         'Content-Type': 'application/json; charset=UTF-8',
       },
@@ -81,9 +73,9 @@ class ApiService {
     }
   }
 
-  Future<void> deleteCase(String cpf) async {
-    print("delete " +cpf);
-    final Response response = await delete('$apiUrl/$cpf');
+  Future<void> deleteCase(String email) async {
+    print("delete " +email);
+    final Response response = await delete('$apiUrl/$email');
     print(response.body);
     print(response.statusCode);
     if (response.statusCode == 200) {

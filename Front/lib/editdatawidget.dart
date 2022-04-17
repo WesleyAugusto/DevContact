@@ -13,7 +13,6 @@ class EditDataWidget extends StatefulWidget {
   @override
   _EditDataWidgetState createState() => _EditDataWidgetState();
 }
-
 class _EditDataWidgetState extends State<EditDataWidget> {
   _EditDataWidgetState();
 
@@ -22,8 +21,7 @@ class _EditDataWidgetState extends State<EditDataWidget> {
   String email = '';
   final _nameController = TextEditingController();
   final _emailController = TextEditingController();
-  final _telefoneController = TextEditingController();
-
+  final _phoneController = TextEditingController();
 
   String status = 'Celular';
   Status _status = Status.celular;
@@ -41,7 +39,6 @@ class _EditDataWidgetState extends State<EditDataWidget> {
     }
     super.initState();
   }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -80,10 +77,6 @@ class _EditDataWidgetState extends State<EditDataWidget> {
                             ],
                           ),
                         ),
-
-
-
-
                         Container(
                           margin: EdgeInsets.fromLTRB(0, 0, 0, 10),
                           child: Column(
@@ -111,7 +104,7 @@ class _EditDataWidgetState extends State<EditDataWidget> {
                             children: <Widget>[
                               Text('Telefone'),
                               TextFormField(
-                                controller: _telefoneController,
+                                controller: _phoneController,
                                 decoration: const InputDecoration(
                                   hintText: 'Telefone',
                                 ),
@@ -169,8 +162,7 @@ class _EditDataWidgetState extends State<EditDataWidget> {
                                 onPressed: () {
                                   if (_addFormKey.currentState.validate()) {
                                     _addFormKey.currentState.save();
-                                    api.updateCases(email, Cases(name: _nameController.text, email: _emailController.text, telefone: _telefoneController.text, status: status));
-
+                                    api.updateCases(email, Cases(name: _nameController.text, email: _emailController.text, phone: _phoneController.text, status: status));
                                     Navigator.pop(context) ;
                                   }
                                 },
