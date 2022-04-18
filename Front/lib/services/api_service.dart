@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:devcontact/models/cases.dart';
+import 'package:flutter/material.dart';
 import 'package:http/http.dart';
 
 class ApiService {
@@ -19,9 +20,11 @@ class ApiService {
   }
 
   Future<Cases> getCaseById(String email) async {
+    print("entrou aqui");
     final response = await get('$apiUrl/$email');
 
     if (response.statusCode == 200) {
+      print("entrou");
       return Cases.fromJson(json.decode(response.body));
     } else {
       throw Exception('Failed to load a case');

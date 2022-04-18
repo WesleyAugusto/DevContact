@@ -4,7 +4,7 @@ import java.lang.System;
 
 @kotlin.Metadata(mv = {1, 6, 0}, k = 1, d1 = {"\u0000\f\n\u0002\u0018\u0002\n\u0002\u0010\u0000\n\u0002\b\u0003\u0018\u0000 \u00032\u00020\u0001:\u0001\u0003B\u0005\u00a2\u0006\u0002\u0010\u0002\u00a8\u0006\u0004"}, d2 = {"Lcom/devcontact/core/mapper/ContactConverter;", "", "()V", "Companion", "devcontact"})
 public final class ContactConverter {
-    @org.jetbrains.annotations.NotNull
+    @org.jetbrains.annotations.NotNull()
     public static final com.devcontact.core.mapper.ContactConverter.Companion Companion = null;
     
     public ContactConverter() {
@@ -18,38 +18,38 @@ public final class ContactConverter {
             super();
         }
         
-        @org.jetbrains.annotations.NotNull
-        public final com.devcontact.core.model.Contact contactDtoToContact(@org.jetbrains.annotations.NotNull
+        @org.jetbrains.annotations.NotNull()
+        public final com.devcontact.core.model.Contact contactDtoToContact(@org.jetbrains.annotations.NotNull()
         com.devcontact.entry.dto.ContactDto contactDto) {
             return null;
         }
         
-        @org.jetbrains.annotations.NotNull
-        public final com.devcontact.entry.dto.ContactDto contactToContactDto(@org.jetbrains.annotations.NotNull
+        @org.jetbrains.annotations.NotNull()
+        public final com.devcontact.entry.dto.ContactDto contactToContactDto(@org.jetbrains.annotations.NotNull()
         com.devcontact.core.model.Contact contact) {
             return null;
         }
         
-        @org.jetbrains.annotations.NotNull
-        public final com.devcontact.infra.entity.ContactEntity contactToContactEntity(@org.jetbrains.annotations.NotNull
+        @org.jetbrains.annotations.NotNull()
+        public final com.devcontact.infra.entity.ContactEntity contactToContactEntity(@org.jetbrains.annotations.NotNull()
         com.devcontact.core.model.Contact contact) {
             return null;
         }
         
-        @org.jetbrains.annotations.NotNull
-        public final com.devcontact.core.model.Contact contactEntityToContact(@org.jetbrains.annotations.NotNull
+        @org.jetbrains.annotations.NotNull()
+        public final com.devcontact.core.model.Contact contactEntityToContact(@org.jetbrains.annotations.NotNull()
         com.devcontact.infra.entity.ContactEntity contactEntity) {
             return null;
         }
         
-        @org.jetbrains.annotations.NotNull
-        public final java.util.List<com.devcontact.core.model.Contact> contactEntityListToContactList(@org.jetbrains.annotations.NotNull
+        @org.jetbrains.annotations.NotNull()
+        public final java.util.List<com.devcontact.core.model.Contact> contactEntityListToContactList(@org.jetbrains.annotations.NotNull()
         java.util.List<com.devcontact.infra.entity.ContactEntity> contactEntity) {
             return null;
         }
         
-        @org.jetbrains.annotations.NotNull
-        public final java.util.List<com.devcontact.entry.dto.ContactDto> contactListToContactDtoList(@org.jetbrains.annotations.NotNull
+        @org.jetbrains.annotations.NotNull()
+        public final java.util.List<com.devcontact.entry.dto.ContactDto> contactListToContactDtoList(@org.jetbrains.annotations.NotNull()
         java.util.List<com.devcontact.core.model.Contact> contact) {
             return null;
         }

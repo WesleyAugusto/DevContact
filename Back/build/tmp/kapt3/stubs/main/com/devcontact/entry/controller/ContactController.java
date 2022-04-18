@@ -7,45 +7,45 @@ import java.lang.System;
 public final class ContactController {
     private final com.devcontact.core.port.ContactServicePort contactServicePort = null;
     
-    public ContactController(@org.jetbrains.annotations.NotNull
+    public ContactController(@org.jetbrains.annotations.NotNull()
     com.devcontact.core.port.ContactServicePort contactServicePort) {
         super();
     }
     
-    @org.jetbrains.annotations.Nullable
-    @io.micronaut.http.annotation.Get
+    @org.jetbrains.annotations.Nullable()
+    @io.micronaut.http.annotation.Get()
     public final io.micronaut.http.MutableHttpResponse<java.util.List<com.devcontact.entry.dto.ContactDto>> getAllContacts() {
         return null;
     }
     
-    @org.jetbrains.annotations.Nullable
+    @org.jetbrains.annotations.Nullable()
     @io.micronaut.http.annotation.Get(value = "/{email}")
-    public final io.micronaut.http.MutableHttpResponse<com.devcontact.entry.dto.ContactDto> getOneContact(@org.jetbrains.annotations.NotNull
-    @io.micronaut.http.annotation.PathVariable
+    public final io.micronaut.http.MutableHttpResponse<com.devcontact.entry.dto.ContactDto> getOneContact(@org.jetbrains.annotations.NotNull()
+    @io.micronaut.http.annotation.PathVariable()
     java.lang.String email) {
         return null;
     }
     
-    @org.jetbrains.annotations.Nullable
-    @io.micronaut.http.annotation.Post
-    public final io.micronaut.http.MutableHttpResponse<com.devcontact.entry.dto.ContactDto> postContact(@org.jetbrains.annotations.NotNull
-    @io.micronaut.http.annotation.Body
+    @org.jetbrains.annotations.Nullable()
+    @io.micronaut.http.annotation.Post()
+    public final io.micronaut.http.MutableHttpResponse<com.devcontact.entry.dto.ContactDto> postContact(@org.jetbrains.annotations.NotNull()
+    @io.micronaut.http.annotation.Body()
     com.devcontact.entry.dto.ContactDto contactDto) {
         return null;
     }
     
-    @org.jetbrains.annotations.Nullable
+    @org.jetbrains.annotations.Nullable()
     @io.micronaut.http.annotation.Put(value = "/{email}")
-    public final io.micronaut.http.MutableHttpResponse<com.devcontact.entry.dto.ContactDto> putContact(@org.jetbrains.annotations.NotNull
-    @io.micronaut.http.annotation.Body
+    public final io.micronaut.http.MutableHttpResponse<com.devcontact.entry.dto.ContactDto> putContact(@org.jetbrains.annotations.NotNull()
+    @io.micronaut.http.annotation.Body()
     com.devcontact.entry.dto.ContactDto contactDto) {
         return null;
     }
     
-    @org.jetbrains.annotations.Nullable
+    @org.jetbrains.annotations.Nullable()
     @io.micronaut.http.annotation.Delete(value = "/{email}")
-    public final io.micronaut.http.MutableHttpResponse<java.lang.String> delContact(@org.jetbrains.annotations.NotNull
-    @io.micronaut.http.annotation.PathVariable
+    public final io.micronaut.http.MutableHttpResponse<java.lang.String> delContact(@org.jetbrains.annotations.NotNull()
+    @io.micronaut.http.annotation.PathVariable()
     java.lang.String email) {
         return null;
     }
