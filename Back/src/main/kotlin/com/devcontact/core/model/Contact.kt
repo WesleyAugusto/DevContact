@@ -1,6 +1,7 @@
 package com.devcontact.core.model
 
 data class Contact(
+    var id: String?,
     var name: String?,
     var email: String?,
     var phone: String?,

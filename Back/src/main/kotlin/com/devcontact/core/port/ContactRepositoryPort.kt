@@ -5,8 +5,8 @@ import com.devcontact.infra.entity.ContactEntity
 
 interface ContactRepositoryPort {
     fun getAllContactsRepository(): List<Contact?>
-    fun getOneContactRepository(email: String): Contact?
+    fun getOneContactRepository(id: String): Contact?
     fun postContactRepository(contactEntity: ContactEntity): Contact
     fun putContactRepository(contactEntity: ContactEntity): Contact
-    fun delContactRepository(email: String): String
+    fun delContactRepository(id: String): String
 }

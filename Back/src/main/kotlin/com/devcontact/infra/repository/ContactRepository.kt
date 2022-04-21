@@ -17,9 +17,12 @@ class ContactRepository(
         return ContactConverter.contactEntityListToContactList(result)
     }
 
-    override fun getOneContactRepository(email: String): Contact {
+    override fun getOneContactRepository(id: String): Contact {
         val contactEntity =  getCollection()
-            .find(Filters.eq("email", email)).toList().firstOrNull()
+            .find(Filters.eq("_id", id)).toList().firstOrNull()
+        println(contactEntity?.id)
+        println(contactEntity)
+
         return ContactConverter.contactEntityToContact(contactEntity!!)
     }
 
@@ -32,16 +35,16 @@ class ContactRepository(
     override fun putContactRepository(contactEntity: ContactEntity): Contact {
         getCollection()
             .replaceOne(
-                Filters.eq("email", contactEntity.email),
+                Filters.eq("_id", contactEntity.id),
                 contactEntity
             )
         return ContactConverter.contactEntityToContact(contactEntity)
     }
 
-    override fun delContactRepository(email: String): String {
+    override fun delContactRepository(id: String): String {
         var result = getCollection()
             .deleteOne(
-                Filters.eq("email", email)
+                Filters.eq("_id", id)
             ).deletedCount
 
         return if (result.toInt() == 1) {
@@ -52,8 +55,8 @@ class ContactRepository(
 
     }
 
-private fun getCollection() =
-    mongoClient
-        .getDatabase("dev")
-        .getCollection("contact", ContactEntity::class.java)
+    private fun getCollection() =
+        mongoClient
+            .getDatabase("dev")
+            .getCollection("contact", ContactEntity::class.java)
 }

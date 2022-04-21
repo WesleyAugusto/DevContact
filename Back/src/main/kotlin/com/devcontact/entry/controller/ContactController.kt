@@ -25,28 +25,27 @@ class ContactController(
         return HttpResponse.ok(result).status(200)
     }
 
-    @Get("/{email}")
-    fun getOneContact(@PathVariable email: String): MutableHttpResponse<ContactDto>? {
-        val result = contactServicePort.getOneContact(email)
+    @Get("/{id}")
+    fun getOneContact(@PathVariable id: String): MutableHttpResponse<ContactDto>? {
+        val result = contactServicePort.getOneContact(id)
         return HttpResponse.ok(result).status(200)
     }
 
     @Post
     fun postContact(@Body contactDto: ContactDto): MutableHttpResponse<ContactDto>? {
         val result = contactServicePort.postContact(ContactConverter.contactDtoToContact(contactDto))
-        //TODO: Pedir para o wesley ajustar o fronte pra receber o codigo de status correto para o created
-        return HttpResponse.created(result).status(200)
+        return HttpResponse.created(result).status(201)
     }
 
-    @Put("/{email}")
+    @Put("/{id}")
     fun putContact(@Body contactDto: ContactDto): MutableHttpResponse<ContactDto>? {
         val result = contactServicePort.putContact(ContactConverter.contactDtoToContact(contactDto))
         return HttpResponse.ok(result).status(200)
     }
 
-    @Delete("/{email}")
-    fun delContact(@PathVariable email: String): MutableHttpResponse<String>? {
-        val result = contactServicePort.delContact(email)
+    @Delete("/{id}")
+    fun delContact(@PathVariable id: String): MutableHttpResponse<String>? {
+        val result = contactServicePort.delContact(id)
         return HttpResponse.ok(result).status(200)
     }
 }

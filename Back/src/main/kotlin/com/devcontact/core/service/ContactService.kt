@@ -16,8 +16,8 @@ class ContactService(
         return ContactConverter.contactListToContactDtoList(repository)
     }
 
-    override fun getOneContact(email: String): ContactDto {
-        val repository = contactRepositoryPort.getOneContactRepository(email)
+    override fun getOneContact(id: String): ContactDto {
+        val repository = contactRepositoryPort.getOneContactRepository(id)
         return ContactConverter.contactToContactDto(repository!!)
     }
 
@@ -31,7 +31,7 @@ class ContactService(
         return ContactConverter.contactToContactDto(repository)
     }
 
-    override fun delContact(email: String): String {
-        return contactRepositoryPort.delContactRepository(email)
+    override fun delContact(id: String): String {
+        return contactRepositoryPort.delContactRepository(id)
     }
 }
