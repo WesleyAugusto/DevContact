@@ -1,14 +1,15 @@
 class Contact {
-
+  final String id;
   final String name;
   final String email;
   final String phone;
   final String status;
 
-  Contact({ this.name, this.email, this.phone, this.status });
+  Contact({this.id, this.name, this.email, this.phone, this.status });
 
   factory Contact.fromJson(Map<String, dynamic> json) {
     return Contact(
+      id: json ['id'] as String,
       name: json['name'] as String,
       email: json['email'] as String,
       phone: json['phone'] as String,
@@ -18,6 +19,6 @@ class Contact {
 
   @override
   String toString() {
-    return 'Trans{email: $email, name: $name, phone: $phone}';
+    return 'Trans{id: $id, email: $email, name: $name, phone: $phone}';
   }
 }

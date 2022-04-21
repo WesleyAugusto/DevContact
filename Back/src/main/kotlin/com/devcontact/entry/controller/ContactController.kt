@@ -38,7 +38,8 @@ class ContactController(
     }
 
     @Put("/{id}")
-    fun putContact(@Body contactDto: ContactDto): MutableHttpResponse<ContactDto>? {
+    fun putContact(@Body contactDto: ContactDto, @PathVariable id: String): MutableHttpResponse<ContactDto>? {
+        contactDto.id = id
         val result = contactServicePort.putContact(ContactConverter.contactDtoToContact(contactDto))
         return HttpResponse.ok(result).status(200)
     }

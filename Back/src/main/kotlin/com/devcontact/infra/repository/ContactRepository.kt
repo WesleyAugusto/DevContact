@@ -7,6 +7,7 @@ import com.devcontact.infra.entity.ContactEntity
 import com.mongodb.client.MongoClient
 import com.mongodb.client.model.Filters
 import io.micronaut.context.annotation.Prototype
+import org.bson.types.ObjectId
 
 @Prototype
 class ContactRepository(
@@ -20,9 +21,6 @@ class ContactRepository(
     override fun getOneContactRepository(id: String): Contact {
         val contactEntity =  getCollection()
             .find(Filters.eq("_id", id)).toList().firstOrNull()
-        println(contactEntity?.id)
-        println(contactEntity)
-
         return ContactConverter.contactEntityToContact(contactEntity!!)
     }
 
@@ -42,9 +40,10 @@ class ContactRepository(
     }
 
     override fun delContactRepository(id: String): String {
+        var idDelete = ObjectId(id)
         var result = getCollection()
             .deleteOne(
-                Filters.eq("_id", id)
+                Filters.eq("_id", idDelete)
             ).deletedCount
 
         return if (result.toInt() == 1) {

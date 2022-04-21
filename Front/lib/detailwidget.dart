@@ -125,7 +125,7 @@ class _DetailWidgetState extends State<DetailWidget> {
             FlatButton(
               child: Text('Sim'),
               onPressed: () {
-                api.deleteContact(widget.contacts.email);
+                api.deleteContact(widget.contacts.id);
                 Navigator.popUntil(context, ModalRoute.withName(Navigator.defaultRouteName));
               },
             ),

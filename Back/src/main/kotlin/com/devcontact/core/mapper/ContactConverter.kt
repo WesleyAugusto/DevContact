@@ -31,6 +31,14 @@ class ContactConverter {
             status = contact.status
         )
 
+        fun postContactToContactEntity(contact: Contact) = ContactEntity(
+            id = null,
+            name = contact.name,
+            email = contact.email,
+            phone = contact.phone,
+            status = contact.status
+        )
+
         fun contactEntityToContact(contactEntity: ContactEntity) = Contact(
             id = contactEntity.id.toString(),
             name = contactEntity.name,

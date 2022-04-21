@@ -19,8 +19,9 @@ class ApiService {
     }
   }
 
-  Future<Contact> getContactById(String email) async {
-    final response = await get('$apiUrl/$email');
+  Future<Contact> getContactById(String id) async {
+    print(id);
+    final response = await get('$apiUrl/$id');
 
     if (response.statusCode == 200) {
       return Contact.fromJson(json.decode(response.body));
@@ -45,15 +46,16 @@ class ApiService {
       body: jsonEncode(data),
     );
 
-    if (response.statusCode == 200) {
+    if (response.statusCode == 201) {
       return Contact.fromJson(json.decode(response.body));
     } else {
       throw Exception('Falha ao criar contato');
     }
   }
 
-  Future<Contact> updateContact(String email, Contact contact) async {
+  Future<Contact> updateContact(String id, Contact contact) async {
     Map data = {
+      'id': contact.id,
       'email': contact.email,
       'name': contact.name,
       'phone': contact.phone,
@@ -61,7 +63,7 @@ class ApiService {
     };
 
     final Response response = await put(
-      '$apiUrl/$email',
+      '$apiUrl/$id',
       headers: <String, String>{
         'Content-Type': 'application/json; charset=UTF-8',
       },
@@ -74,8 +76,8 @@ class ApiService {
     }
   }
 
-  Future<void> deleteContact(String email) async {
-    final Response response = await delete('$apiUrl/$email');
+  Future<void> deleteContact(String id) async {
+    final Response response = await delete('$apiUrl/$id');
     if (response.statusCode == 200) {
       print("Contato Deletado");
     } else {

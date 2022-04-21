@@ -22,7 +22,7 @@ class ContactService(
     }
 
     override fun postContact(contact: Contact): ContactDto {
-        var repository = contactRepositoryPort.postContactRepository(ContactConverter.contactToContactEntity(contact))
+        var repository = contactRepositoryPort.postContactRepository(ContactConverter.postContactToContactEntity(contact))
         return ContactConverter.contactToContactDto(repository)
     }
 

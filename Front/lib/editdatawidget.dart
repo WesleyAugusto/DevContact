@@ -18,7 +18,7 @@ class _EditDataWidgetState extends State<EditDataWidget> {
 
   final ApiService api = ApiService();
   final _addFormKey = GlobalKey<FormState>();
-  String email = '';
+  String id = '';
   final _nameController = TextEditingController();
   final _emailController = TextEditingController();
   final _phoneController = TextEditingController();
@@ -28,7 +28,7 @@ class _EditDataWidgetState extends State<EditDataWidget> {
 
   @override
   void initState() {
-    email = widget.contacts.email;
+    id = widget.contacts.id;
     _nameController.text = widget.contacts.name;
 
     status = widget.contacts.status;
@@ -162,7 +162,7 @@ class _EditDataWidgetState extends State<EditDataWidget> {
                                 onPressed: () {
                                   if (_addFormKey.currentState.validate()) {
                                     _addFormKey.currentState.save();
-                                    api.updateContact(email, Contact(name: _nameController.text, email: _emailController.text, phone: _phoneController.text, status: status));
+                                    api.updateContact(id, Contact(name: _nameController.text, email: _emailController.text, phone: _phoneController.text, status: status));
                                     Navigator.pop(context) ;
                                   }
                                 },
