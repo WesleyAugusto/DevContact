@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:devcontact/adddatawidget.dart';
 import 'dart:async';
-import 'package:devcontact/models/cases.dart';
+import 'package:devcontact/models/contact.dart';
 import 'package:devcontact/services/api_service.dart';
-import 'package:devcontact/caseslist.dart';
+import 'package:devcontact/contactslist.dart';
 
 void main() {
   runApp(MyApp());
@@ -14,7 +14,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: 'DevContact',
       theme: ThemeData(
         // This is the theme of your application.
         //
@@ -31,7 +31,7 @@ class MyApp extends StatelessWidget {
         // closer together (more dense) than on mobile platforms.
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: MyHomePage(title: 'Flutter Demo Home Page'),
+      home: MyHomePage(title: 'Bem Vindo ao DevContact'),
     );
   }
 }
@@ -56,12 +56,12 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   final ApiService api = ApiService();
-  List<Cases> casesList;
+  List<Contact> contactsList;
 
   @override
   Widget build(BuildContext context) {
-    if(casesList == null) {
-      casesList = List<Cases>();
+    if(contactsList == null) {
+      contactsList = List<Contact>();
     }
     // This method is rerun every time setState is called, for instance as done
     // by the _incrementCounter method above.
@@ -80,9 +80,9 @@ class _MyHomePageState extends State<MyHomePage> {
             child: new FutureBuilder(
               future: loadList(),
               builder: (context, snapshot) {
-                return casesList.length > 0? new CasesList(cases: casesList):
+                return contactsList.length > 0? new ContactsList(contacts: contactsList):
                 new Center(child:
-                new Text('No data found, tap plus button to add!', style: Theme.of(context).textTheme.titleMedium   ));
+                new Text('Para adicionar um contato clique no botao inferior direito!', style: Theme.of(context).textTheme.titleMedium   ));
               },
             )
         ),
@@ -98,13 +98,13 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   Future loadList() {
-    Future<List<Cases>> futureCases = api.getCases();
-    futureCases.then((casesList) {
+    Future<List<Contact>> futureContacts = api.getContacts();
+    futureContacts.then((contactsList) {
       setState(() {
-        this.casesList = casesList;
+        this.contactsList = contactsList;
       });
     });
-    return futureCases;
+    return futureContacts;
   }
 
   _navigateToAddScreen (BuildContext context) async {

@@ -1,7 +1,7 @@
 import 'package:devcontact/services/api_service.dart';
 import 'package:flutter/material.dart';
 
-import 'models/cases.dart';
+import 'models/contact.dart';
 
 enum Status { celular, fixo }
 
@@ -151,7 +151,7 @@ class _AddDataWidgetState extends State<AddDataWidget> {
                                 onPressed: () {
                                   if (_addFormKey.currentState.validate()) {
                                     _addFormKey.currentState.save();
-                                    api.createCase(Cases(name: _nameController.text, email: _emailController.text, phone: _phoneController.text, status: status));
+                                    api.createContact(Contact(name: _nameController.text, email: _emailController.text, phone: _phoneController.text, status: status));
 
                                     Navigator.pop(context) ;
                                   }

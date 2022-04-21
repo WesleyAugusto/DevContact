@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'services/api_service.dart';
 import 'editdatawidget.dart';
-import 'models/cases.dart';
+import 'models/contact.dart';
 
 class DetailWidget extends StatefulWidget {
-  DetailWidget(this.cases);
+  DetailWidget(this.contacts);
 
-  final Cases cases;
+  final Contact contacts;
 
   @override
   _DetailWidgetState createState() => _DetailWidgetState();
@@ -36,8 +36,8 @@ class _DetailWidgetState extends State<DetailWidget> {
                         margin: EdgeInsets.fromLTRB(0, 0, 0, 10),
                         child: Column(
                           children: <Widget>[
-                            Text('Name:', style: TextStyle(color: Colors.black.withOpacity(0.8))),
-                            Text(widget.cases.name, style: Theme.of(context).textTheme.titleMedium)
+                            Text('Nome:', style: TextStyle(color: Colors.black.withOpacity(0.8))),
+                            Text(widget.contacts.name, style: Theme.of(context).textTheme.titleMedium)
                           ],
                         ),
                       ),
@@ -46,7 +46,7 @@ class _DetailWidgetState extends State<DetailWidget> {
                         child: Column(
                           children: <Widget>[
                             Text('Email:', style: TextStyle(color: Colors.black.withOpacity(0.8))),
-                            Text(widget.cases.email, style: Theme.of(context).textTheme.titleMedium)
+                            Text(widget.contacts.email, style: Theme.of(context).textTheme.titleMedium)
                           ],
                         ),
                       ),
@@ -55,7 +55,7 @@ class _DetailWidgetState extends State<DetailWidget> {
                         child: Column(
                           children: <Widget>[
                             Text('Telefone:', style: TextStyle(color: Colors.black.withOpacity(0.8))),
-                            Text(widget.cases.phone, style: Theme.of(context).textTheme.titleLarge)
+                            Text(widget.contacts.phone, style: Theme.of(context).textTheme.titleLarge)
                           ],
                         ),
                       ),
@@ -64,7 +64,7 @@ class _DetailWidgetState extends State<DetailWidget> {
                         child: Column(
                           children: <Widget>[
                             Text('Status:', style: TextStyle(color: Colors.black.withOpacity(0.8))),
-                            Text(widget.cases.status, style: Theme.of(context).textTheme.titleMedium)
+                            Text(widget.contacts.status, style: Theme.of(context).textTheme.titleMedium)
                           ],
                         ),
                       ),
@@ -75,7 +75,7 @@ class _DetailWidgetState extends State<DetailWidget> {
                             RaisedButton(
                               splashColor: Colors.red,
                               onPressed: () {
-                                _navigateToEditScreen(context, widget.cases);
+                                _navigateToEditScreen(context, widget.contacts);
                               },
                               child: Text('Edit', style: TextStyle(color: Colors.white)),
                               color: Colors.blue,
@@ -100,10 +100,10 @@ class _DetailWidgetState extends State<DetailWidget> {
     );
   }
 
-  _navigateToEditScreen (BuildContext context, Cases cases) async {
+  _navigateToEditScreen (BuildContext context, Contact contacts) async {
     final result = await Navigator.push(
       context,
-      MaterialPageRoute(builder: (context) => EditDataWidget(cases)),
+      MaterialPageRoute(builder: (context) => EditDataWidget(contacts)),
     );
   }
 
@@ -125,7 +125,7 @@ class _DetailWidgetState extends State<DetailWidget> {
             FlatButton(
               child: Text('Sim'),
               onPressed: () {
-                api.deleteCase(widget.cases.email);
+                api.deleteContact(widget.contacts.email);
                 Navigator.popUntil(context, ModalRoute.withName(Navigator.defaultRouteName));
               },
             ),

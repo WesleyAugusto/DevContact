@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:devcontact/services/api_service.dart';
-import 'models/cases.dart';
+import 'models/contact.dart';
 
 
 enum Status { celular, fixo }
 
 class EditDataWidget extends StatefulWidget {
-  EditDataWidget(this.cases);
+  EditDataWidget(this.contacts);
 
-  final Cases cases;
+  final Contact contacts;
 
   @override
   _EditDataWidgetState createState() => _EditDataWidgetState();
@@ -28,13 +28,13 @@ class _EditDataWidgetState extends State<EditDataWidget> {
 
   @override
   void initState() {
-    email = widget.cases.email;
-    _nameController.text = widget.cases.name;
+    email = widget.contacts.email;
+    _nameController.text = widget.contacts.name;
 
-    status = widget.cases.status;
-    if(widget.cases.status == 'Celular') {
+    status = widget.contacts.status;
+    if(widget.contacts.status == 'Celular') {
       _status = Status.celular;
-    } else if(widget.cases.status == 'Fixo') {
+    } else if(widget.contacts.status == 'Fixo') {
       _status = Status.fixo;
     }
     super.initState();
@@ -162,7 +162,7 @@ class _EditDataWidgetState extends State<EditDataWidget> {
                                 onPressed: () {
                                   if (_addFormKey.currentState.validate()) {
                                     _addFormKey.currentState.save();
-                                    api.updateCases(email, Cases(name: _nameController.text, email: _emailController.text, phone: _phoneController.text, status: status));
+                                    api.updateContact(email, Contact(name: _nameController.text, email: _emailController.text, phone: _phoneController.text, status: status));
                                     Navigator.pop(context) ;
                                   }
                                 },

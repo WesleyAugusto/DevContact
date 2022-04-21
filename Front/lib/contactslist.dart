@@ -1,17 +1,17 @@
 import 'package:flutter/material.dart';
-import 'package:devcontact/models/cases.dart';
+import 'package:devcontact/models/contact.dart';
 import 'detailwidget.dart';
 
-class CasesList extends StatelessWidget {
+class ContactsList extends StatelessWidget {
 
-  final List<Cases> cases;
-  CasesList({Key key, this.cases}) : super(key: key);
+  final List<Contact> contacts;
+  ContactsList({Key key, this.contacts}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return
       ListView.builder(
-          itemCount: cases == null ? 0 : cases.length,
+          itemCount: contacts == null ? 0 : contacts.length,
           itemBuilder: (BuildContext context, int index) {
             return
               Card(
@@ -20,13 +20,13 @@ class CasesList extends StatelessWidget {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => DetailWidget(cases[index])),
+                            builder: (context) => DetailWidget(contacts[index])),
                       );
                     },
                     child: ListTile(
                       leading: Icon(Icons.person),
-                      title: Text(cases[index].name),
-                      subtitle: Text(cases[index].phone.toString()),
+                      title: Text(contacts[index].name),
+                      subtitle: Text(contacts[index].phone.toString()),
 
                     ),
                   )
