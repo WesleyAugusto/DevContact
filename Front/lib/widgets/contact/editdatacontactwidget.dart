@@ -1,33 +1,49 @@
-import 'package:devcontact/services/api_service.dart';
 import 'package:flutter/material.dart';
+import 'package:devcontact/services/api_servicecontact.dart';
+import '../../models/contact.dart';
 
-import 'models/contact.dart';
 
 enum Status { celular, fixo }
 
-class AddDataWidget extends StatefulWidget {
-  AddDataWidget();
+class EditDataWidget extends StatefulWidget {
+  EditDataWidget(this.contacts);
+
+  final Contact contacts;
 
   @override
-  _AddDataWidgetState createState() => _AddDataWidgetState();
+  _EditDataWidgetState createState() => _EditDataWidgetState();
 }
+class _EditDataWidgetState extends State<EditDataWidget> {
+  _EditDataWidgetState();
 
-class _AddDataWidgetState extends State<AddDataWidget> {
-  _AddDataWidgetState();
-
-  final ApiService api = ApiService();
+  final ApiServiceContact api = ApiServiceContact();
   final _addFormKey = GlobalKey<FormState>();
+  String id = '';
   final _nameController = TextEditingController();
   final _emailController = TextEditingController();
   final _phoneController = TextEditingController();
-  String status = 'celular';
+
+  String status = 'Celular';
   Status _status = Status.celular;
 
+  @override
+  void initState() {
+    id = widget.contacts.id;
+    _nameController.text = widget.contacts.name;
+
+    status = widget.contacts.status;
+    if(widget.contacts.status == 'Celular') {
+      _status = Status.celular;
+    } else if(widget.contacts.status == 'Fixo') {
+      _status = Status.fixo;
+    }
+    super.initState();
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Adicionar Contatos'),
+        title: Text('Editar Contato'),
       ),
       body: Form(
         key: _addFormKey,
@@ -61,9 +77,6 @@ class _AddDataWidgetState extends State<AddDataWidget> {
                             ],
                           ),
                         ),
-
-
-
                         Container(
                           margin: EdgeInsets.fromLTRB(0, 0, 0, 10),
                           child: Column(
@@ -106,8 +119,6 @@ class _AddDataWidgetState extends State<AddDataWidget> {
                             ],
                           ),
                         ),
-
-
                         Container(
                           margin: EdgeInsets.fromLTRB(0, 0, 0, 10),
                           child: Column(
@@ -151,8 +162,7 @@ class _AddDataWidgetState extends State<AddDataWidget> {
                                 onPressed: () {
                                   if (_addFormKey.currentState.validate()) {
                                     _addFormKey.currentState.save();
-                                    api.createContact(Contact(name: _nameController.text, email: _emailController.text, phone: _phoneController.text, status: status));
-
+                                    api.updateContact(id, Contact(name: _nameController.text, email: _emailController.text, phone: _phoneController.text, status: status));
                                     Navigator.pop(context) ;
                                   }
                                 },
@@ -171,4 +181,5 @@ class _AddDataWidgetState extends State<AddDataWidget> {
       ),
     );
   }
+
 }

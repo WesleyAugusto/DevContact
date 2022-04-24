@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'services/api_service.dart';
-import 'editdatawidget.dart';
+import 'services/api_servicecontact.dart';
+import 'widgets/contact/editdatacontactwidget.dart';
 import 'models/contact.dart';
 
 class DetailWidget extends StatefulWidget {
@@ -15,7 +15,7 @@ class DetailWidget extends StatefulWidget {
 class _DetailWidgetState extends State<DetailWidget> {
   _DetailWidgetState();
 
-  final ApiService api = ApiService();
+  final ApiServiceContact api = ApiServiceContact();
 
   @override
   Widget build(BuildContext context) {

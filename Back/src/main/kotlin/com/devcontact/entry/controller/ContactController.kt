@@ -33,6 +33,7 @@ class ContactController(
 
     @Post
     fun postContact(@Body contactDto: ContactDto): MutableHttpResponse<ContactDto>? {
+        println(contactDto)
         val result = contactServicePort.postContact(ContactConverter.contactDtoToContact(contactDto))
         return HttpResponse.created(result).status(201)
     }

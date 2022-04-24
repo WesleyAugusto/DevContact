@@ -1,49 +1,31 @@
+
 import 'package:flutter/material.dart';
-import 'package:devcontact/services/api_service.dart';
-import 'models/contact.dart';
+import '../../models/register.dart';
+import '../../services/api_service.dart';
 
-
-enum Status { celular, fixo }
-
-class EditDataWidget extends StatefulWidget {
-  EditDataWidget(this.contacts);
-
-  final Contact contacts;
+class AddDataWidget extends StatefulWidget {
+  AddDataWidget();
 
   @override
-  _EditDataWidgetState createState() => _EditDataWidgetState();
+  _AddDataWidgetState createState() => _AddDataWidgetState();
 }
-class _EditDataWidgetState extends State<EditDataWidget> {
-  _EditDataWidgetState();
+
+class _AddDataWidgetState extends State<AddDataWidget> {
+  _AddDataWidgetState();
 
   final ApiService api = ApiService();
   final _addFormKey = GlobalKey<FormState>();
-  String id = '';
-  final _nameController = TextEditingController();
+  final _userNameController = TextEditingController();
+  final _firstNameController = TextEditingController();
+  final _lastNameController = TextEditingController();
   final _emailController = TextEditingController();
-  final _phoneController = TextEditingController();
+  final _passwordController = TextEditingController();
 
-  String status = 'Celular';
-  Status _status = Status.celular;
-
-  @override
-  void initState() {
-    id = widget.contacts.id;
-    _nameController.text = widget.contacts.name;
-
-    status = widget.contacts.status;
-    if(widget.contacts.status == 'Celular') {
-      _status = Status.celular;
-    } else if(widget.contacts.status == 'Fixo') {
-      _status = Status.fixo;
-    }
-    super.initState();
-  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Editar Contato'),
+        title: Text('Cadastrar Conta'),
       ),
       body: Form(
         key: _addFormKey,
@@ -60,15 +42,60 @@ class _EditDataWidgetState extends State<EditDataWidget> {
                           margin: EdgeInsets.fromLTRB(0, 0, 0, 10),
                           child: Column(
                             children: <Widget>[
-                              Text('Nome Completo'),
+                              Text('Login'),
                               TextFormField(
-                                controller: _nameController,
+                                controller: _userNameController,
                                 decoration: const InputDecoration(
-                                  hintText: 'Nome Completo',
+                                  hintText: 'Login',
+                                ),
+                                validator: (value) {
+                                  if (value.isEmpty) {
+                                    return 'Login Invalido';
+                                  }
+                                  return null;
+                                },
+                                onChanged: (value) {},
+                              ),
+                            ],
+                          ),
+                        ),
+
+
+
+                        Container(
+                          margin: EdgeInsets.fromLTRB(0, 0, 0, 10),
+                          child: Column(
+                            children: <Widget>[
+                              Text('Primeiro Nome'),
+                              TextFormField(
+                                controller: _firstNameController,
+                                decoration: const InputDecoration(
+                                  hintText: 'Primeiro Nome',
                                 ),
                                 validator: (value) {
                                   if (value.isEmpty) {
                                     return 'Nome Invalido';
+                                  }
+                                  return null;
+                                },
+                                onChanged: (value) {},
+                              ),
+                            ],
+                          ),
+                        ),
+                        Container(
+                          margin: EdgeInsets.fromLTRB(0, 0, 0, 10),
+                          child: Column(
+                            children: <Widget>[
+                              Text('Sobre Nome'),
+                              TextFormField(
+                                controller: _lastNameController,
+                                decoration: const InputDecoration(
+                                  hintText: 'Sobre Nome',
+                                ),
+                                validator: (value) {
+                                  if (value.isEmpty) {
+                                    return 'Sobre Nome Invalido';
                                   }
                                   return null;
                                 },
@@ -102,53 +129,19 @@ class _EditDataWidgetState extends State<EditDataWidget> {
                           margin: EdgeInsets.fromLTRB(0, 0, 0, 10),
                           child: Column(
                             children: <Widget>[
-                              Text('Telefone'),
+                              Text('Senha'),
                               TextFormField(
-                                controller: _phoneController,
+                                controller: _passwordController,
                                 decoration: const InputDecoration(
-                                  hintText: 'Telefone',
+                                  hintText: 'Senha',
                                 ),
                                 validator: (value) {
                                   if (value.isEmpty) {
-                                    return 'Telefone Invalido';
+                                    return 'Senha Invalido';
                                   }
                                   return null;
                                 },
                                 onChanged: (value) {},
-                              ),
-                            ],
-                          ),
-                        ),
-                        Container(
-                          margin: EdgeInsets.fromLTRB(0, 0, 0, 10),
-                          child: Column(
-                            children: <Widget>[
-                              Text('Marcador'),
-                              ListTile(
-                                title: const Text('Celular'),
-                                leading: Radio(
-                                  value: Status.celular,
-                                  groupValue: _status,
-                                  onChanged: (Status value) {
-                                    setState(() {
-                                      _status = value;
-                                      status = 'Celular';
-                                    });
-                                  },
-                                ),
-                              ),
-                              ListTile(
-                                title: const Text('Fixo'),
-                                leading: Radio(
-                                  value: Status.fixo,
-                                  groupValue: _status,
-                                  onChanged: (Status value) {
-                                    setState(() {
-                                      _status = value;
-                                      status = 'Fixo';
-                                    });
-                                  },
-                                ),
                               ),
                             ],
                           ),
@@ -162,7 +155,8 @@ class _EditDataWidgetState extends State<EditDataWidget> {
                                 onPressed: () {
                                   if (_addFormKey.currentState.validate()) {
                                     _addFormKey.currentState.save();
-                                    api.updateContact(id, Contact(name: _nameController.text, email: _emailController.text, phone: _phoneController.text, status: status));
+                                    api.registerUser(RegisterUser(userName: _userNameController.text, firstName: _firstNameController.text, lastName: _lastNameController.text, email: _emailController.text, password: _passwordController.text));
+
                                     Navigator.pop(context) ;
                                   }
                                 },
@@ -181,5 +175,4 @@ class _EditDataWidgetState extends State<EditDataWidget> {
       ),
     );
   }
-
 }

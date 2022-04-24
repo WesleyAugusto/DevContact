@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:devcontact/models/contact.dart';
-import 'detailwidget.dart';
+import '../../detailwidget.dart';
 
 class ContactsList extends StatelessWidget {
 
